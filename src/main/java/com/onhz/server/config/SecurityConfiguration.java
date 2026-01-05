@@ -6,7 +6,7 @@ import com.onhz.server.security.jwt.JwtAuthenticationEntryPoint;
 import com.onhz.server.security.jwt.JwtAuthenticationFilter;
 import com.onhz.server.security.oauth.OAuth2AuthenticationFailureHandler;
 import com.onhz.server.security.oauth.OAuth2AuthenticationSuccessHandler;
-import com.onhz.server.security.oauth.OAuth2AuthorizationCookieRepository;
+//import com.onhz.server.security.oauth.OAuth2AuthorizationCookieRepository;
 import com.onhz.server.service.auth.OAuthUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +18,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.client.web.HttpSessionOAuth2AuthorizationRequestRepository;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestResolver;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -40,7 +41,7 @@ public class SecurityConfiguration  {
     private OAuthUserService oAuthUserService;
     private OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
     private ObjectMapper objectMapper;
-    private OAuth2AuthorizationCookieRepository oAuth2AuthorizationCookieRepository;
+//    private OAuth2AuthorizationCookieRepository oAuth2AuthorizationCookieRepository;
     private OAuth2AuthorizationRequestResolver oAuth2AuthorizationRequestResolver;
     private OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
 
@@ -48,7 +49,7 @@ public class SecurityConfiguration  {
             JwtAuthenticationFilter jwtAuthenticationFilter,
             OAuthUserService oAuthUserService,
             OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler,
-            OAuth2AuthorizationCookieRepository oAuth2AuthorizationCookieRepository,
+//            OAuth2AuthorizationCookieRepository oAuth2AuthorizationCookieRepository,
             ObjectMapper objectMapper,
             OAuth2AuthorizationRequestResolver oAuth2AuthorizationRequestResolver,
             OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler
@@ -56,7 +57,7 @@ public class SecurityConfiguration  {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
         this.oAuthUserService = oAuthUserService;
         this.oAuth2AuthenticationSuccessHandler = oAuth2AuthenticationSuccessHandler;
-        this.oAuth2AuthorizationCookieRepository = oAuth2AuthorizationCookieRepository;
+//        this.oAuth2AuthorizationCookieRepository = oAuth2AuthorizationCookieRepository;
         this.objectMapper = objectMapper;
         this.oAuth2AuthorizationRequestResolver = oAuth2AuthorizationRequestResolver;
         this.oAuth2AuthenticationFailureHandler = oAuth2AuthenticationFailureHandler;
@@ -113,7 +114,7 @@ public class SecurityConfiguration  {
                         .failureHandler(oAuth2AuthenticationFailureHandler)
                 .authorizationEndpoint(authorization -> authorization
                         .authorizationRequestResolver(oAuth2AuthorizationRequestResolver)
-                        .authorizationRequestRepository(oAuth2AuthorizationCookieRepository))
+                        .authorizationRequestRepository( new HttpSessionOAuth2AuthorizationRequestRepository()))
                 .userInfoEndpoint(userInfo -> userInfo
                         .userService(oAuthUserService)
                 )

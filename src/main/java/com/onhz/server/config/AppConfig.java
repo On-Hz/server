@@ -1,6 +1,6 @@
 package com.onhz.server.config;
 
-import com.onhz.server.security.oauth.OAuth2AuthorizationCookieRepository;
+//import com.onhz.server.security.oauth.OAuth2AuthorizationCookieRepository;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,8 +36,8 @@ public class AppConfig {
         return new DefaultOAuth2AuthorizationRequestResolver(clientRegistrationRepository, "/oauth2/authorization");
     }
 
-    @Bean
-    public OAuth2AuthorizationCookieRepository oAuth2AuthorizationCookieRepository() {
-        return new OAuth2AuthorizationCookieRepository();
-    }
+//    @Bean
+//    public OAuth2AuthorizationCookieRepository oAuth2AuthorizationCookieRepository() {
+//        return new OAuth2AuthorizationCookieRepository();
+//    }
 }

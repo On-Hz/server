@@ -37,6 +37,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
     @Override
     @Transactional
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+        log.info("oauth 통과 후 회원가입 밎 로그인 처리 시작");
         OAuth2User oauth2User = (OAuth2User) authentication.getPrincipal();
         Long userId = oauth2User.getAttribute("userId");
         UserEntity user = userRepository.findByIdWithSocial(userId)

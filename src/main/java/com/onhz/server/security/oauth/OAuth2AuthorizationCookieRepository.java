@@ -25,6 +25,11 @@ public class OAuth2AuthorizationCookieRepository implements AuthorizationRequest
 
     @Override
     public void saveAuthorizationRequest(OAuth2AuthorizationRequest authorizationRequest, HttpServletRequest request, HttpServletResponse response) {
+        log.info("save auth request");
+        log.info("request scheme={}", request.getScheme());
+        log.info("request isSecure={}", request.isSecure());
+        log.info("request serverName={}", request.getServerName());
+        log.info("request host header={}", request.getHeader("Host"));
         if (authorizationRequest == null) {
             removeAuthorizationRequestCookies(request, response);
             return;

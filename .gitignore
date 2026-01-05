@@ -44,3 +44,8 @@ out/
 
 ### H2 DB ###
 /data/db.*.db
+
+# QueryDSL Q-classes
+/build/generated/
+/out/production/generated/
+/src/main/generated/

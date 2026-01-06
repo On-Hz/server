@@ -166,7 +166,7 @@ spring:
 #    url: jdbc:postgresql://on-hz-postgres:5432/onhz
     url: jdbc:postgresql://220.93.50.45:5432/onhz
     username: onhz
-    password: onhz
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 5
